@@ -2,6 +2,9 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cookieParser = require("cookie-parser");
 const CORS = require('cors');
+const {
+    authRoute
+} = require('./routes');
 
 
 // files
@@ -18,7 +21,13 @@ app.use(CORS({
 app.use(express.json());
 app.use(cookieParser());
 
+app.get('/',(req,res)=>{
+    res.json('hi');
+})
+app.use('/v1/auth',authRoute);
+
+
 app.listen(process.env.PORT,()=>{
     console.log("Server Started successfully");
     connectDB();
-})
+});
