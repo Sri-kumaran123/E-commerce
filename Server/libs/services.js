@@ -8,7 +8,7 @@ const generateRefreshToken = (user) =>{
     return jwt.sign(user,process.env.REFRESH_TOKEN_SECRET,{expiresIn:"7d"});
 }
 
-const verifyToken = (token) => jwt.verify(token,process.env.REFRESH_TOKEN_SECRET);
+const verifyToken = (token,isAccess) => jwt.verify(token,isAccess?process.env.ACCESS_TOKEN_SECRET:process.env.REFRESH_TOKEN_SECRET);
 
 
 

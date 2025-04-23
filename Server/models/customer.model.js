@@ -24,7 +24,7 @@ const customerSchema = mongoose.Schema({
         maxLength:10
     },
     address:{
-        type:[addressSchema]
+        type:addressSchema
     },
     history:{
         type:[mongoose.Types.ObjectId],

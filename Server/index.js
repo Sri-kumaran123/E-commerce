@@ -9,6 +9,7 @@ const {
 
 // files
 const connectDB = require('./libs/db.js');
+const protectRouteMiddleware = require('./middlewars/prodectRoute.js');
 
 
 dotenv.config();
@@ -25,6 +26,10 @@ app.get('/',(req,res)=>{
     res.json('hi');
 })
 app.use('/v1/auth',authRoute);
+app.use(protectRouteMiddleware);
+app.get('/test',(req,res)=>{
+    res.json('hi');
+});
 
 
 app.listen(process.env.PORT,()=>{
