@@ -8,7 +8,7 @@ const ordersSChema = mongoose.Schema({
     },
     status:{
         type:String,
-        enum:['Processing','Success','Faliure'],
+        enum:['Processing','Success','Faliure', 'Cancel'],
         required:true,
         default:"Processing"
     },
@@ -20,7 +20,7 @@ const ordersSChema = mongoose.Schema({
     delivary :{
         type:mongoose.Types.ObjectId,
         ref:"Delivary",
-        required:true,
+        
     }
 },{timeStamp:true});
 

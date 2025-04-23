@@ -12,7 +12,7 @@ const productSchema = mongoose.Schema({
     imgUrl:{
         type:String,
     },
-    quntity:{
+    quantity:{
         type:Number,
         default:0
     }
