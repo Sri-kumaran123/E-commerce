@@ -7,6 +7,8 @@
     border: none;
     border-radius: 2px;
     cursor: pointer;
+    position: relative;
+  overflow: hidden;
     
 }
 
@@ -14,3 +16,22 @@
     background-color: var(--secondary);
     
 }
+
+.loader {
+    display: inline-block;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    color: white;
+    text-align: center;
+  }
+  
+  .loader::after {
+    content: ' .';
+    animation: dots 1.2s steps(3, end) infinite;
+  }
+  
+  @keyframes dots {
+    0% { content: ' .'; }
+    33% { content: ' ..'; }
+    66% { content: ' ...'; }
+  }

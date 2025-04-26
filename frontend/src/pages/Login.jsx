@@ -3,17 +3,20 @@ import { Mail, Lock } from 'lucide-react';
 import { useState } from 'react';
 import Buttonnormal from "../components/Buttonnormal";
 import Formbottom from "../components/Formbottom";
+import useLoginHook from "../hooks/useLoginHook";
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const {loading, hookFunction} = useLoginHook();
 
   const handlSubmit = (e) =>{
-    
+    e.preventDefault();
+    hookFunction({email,password});
   }
   return (
     <div className="authpage">
-      <form>
+      <form onSubmit={handlSubmit}>
         <Inputbox 
           placeholder="Enter Email"
           type="email"
@@ -30,8 +33,8 @@ export default function Login() {
         />
         <Buttonnormal
           text={"Login"}
-          handlsubmit={handlSubmit}
           type={"submit"}
+          loading = {loading}
         />
 
         <Formbottom

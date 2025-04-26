@@ -4,9 +4,9 @@ export default function SelectInput({labeltext, selectvalue, handlechange}){
     return <div className={styles.inputbox}>
           <label>{labeltext}</label>
           <select
-          
-          onChange={handlechange}
+          onChange={(e)=>{handlechange(e)}}
           >
+            <option value={null}>--Select one--</option>
             {selectvalue.map(x=>{
                 return <option value={x.value}>{x.dis}</option>
             })}

@@ -8,7 +8,6 @@ const delivarySchema = mongoose.Schema({
     },
     phone:{
             type:Number,
-            required:true,
             maxLength:10
     },
 });

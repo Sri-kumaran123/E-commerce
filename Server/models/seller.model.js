@@ -8,7 +8,6 @@ const sellerSchema = mongoose.Schema({
     },
     phone:{
         type:Number,
-        required:true,
         maxLength:10
     },
     product:{

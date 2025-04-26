@@ -5,6 +5,7 @@ const CORS = require('cors');
 const {
     authRoute
 } = require('./routes');
+const getUserRoute = require('./libs/checkauthuser.js');
 
 
 // files
@@ -17,7 +18,7 @@ const app = express();
 
 app.use(CORS({
     credentials:true,
-    origin:process.env.TEST === 'true' ? '*' : process.env.FRONTEND_URL
+    origin:process.env.TEST === 'true' ? 'http://localhost:5173' : process.env.FRONTEND_URL
 }))
 app.use(express.json());
 app.use(cookieParser());
@@ -27,6 +28,7 @@ app.get('/',(req,res)=>{
 })
 app.use('/v1/auth',authRoute);
 app.use(protectRouteMiddleware);
+app.use('/v1/check', getUserRoute);
 app.get('/test',(req,res)=>{
     res.json('hi');
 });

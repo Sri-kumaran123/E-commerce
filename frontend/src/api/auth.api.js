@@ -4,7 +4,9 @@ import api from "./api";
 
 export const loginAuth = async (data) => {
     try{
+        console.log(data);
         const res = await api.post('/v1/auth/login', data);
+        console.log(res.data);
         return res;
 
     } catch (err) {
@@ -45,12 +47,12 @@ export const logoutUser = async () =>{
     }
 }
 
-// export const getloginUser = async () => {
-//     try {
-//         const res = await api.get('/user/');
-//         return res;
-//     } catch (err) {
-//         console.log(err.message);
-//         return Promise.reject(err.message);
-//     }
-// }
+export const getloginUser = async () => {
+    try {
+        const res = await api.get('/v1/check/getuser');
+        return res;
+    } catch (err) {
+        console.log(err.message);
+        return Promise.reject(err.message);
+    }
+}

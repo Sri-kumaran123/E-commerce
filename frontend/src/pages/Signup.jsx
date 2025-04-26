@@ -5,21 +5,29 @@ import Buttonnormal from "../components/Buttonnormal";
 import Formbottom from "../components/Formbottom";
 import SelectInput from "../components/SelectInput";
 import { SELECT_REGISTER_VALUES } from "../assets/constant";
+import useLoginHook from "../hooks/useLoginHook";
 
 export default function Signup({manage}){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [username, setUserName] = useState('');
+    const [userName, setUserName] = useState('');
+    const [role, setRole] = useState(null);
+
+    const {loading, hookFunctionSignup} = useLoginHook();
     
     const handlSubmit = (e) =>{
+      e.preventDefault();
+      console.log(role)
+      role?hookFunctionSignup({email, password, userName, role}):hookFunctionSignup({email, password, userName});
         
     }
     const handleSelect = (e) =>{
-
+        setRole(e.target.value);
+        console.log(role)
     }
 
     return <div className="authpage">
-        <form>
+        <form onSubmit={handlSubmit}>
         <Inputbox 
           placeholder="Enter Email"
           type="email"
@@ -52,8 +60,8 @@ export default function Signup({manage}){
         
         <Buttonnormal
           text={"Register"}
-          handlsubmit={handlSubmit}
           type={"submit"}
+          loading = {loading}
         />
         <Formbottom
           text={"Already have a Account"}
