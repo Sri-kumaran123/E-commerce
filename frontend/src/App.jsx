@@ -4,6 +4,8 @@ import './App.css'
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Protected from './pages/Protected';
+
 function App() {
   
 
@@ -13,6 +15,9 @@ function App() {
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Signup />} />
       <Route path='/manage/register' element={<Signup manage={true} />} />
+      <Route path='/profile' element={<Protected />}>
+
+      </Route>
     </Routes>
     
   </div>

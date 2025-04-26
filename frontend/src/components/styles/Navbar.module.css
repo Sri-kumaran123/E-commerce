@@ -36,6 +36,11 @@ nav > h1 {
     text-transform: capitalize;
 }
 
+.group a{
+    color: var(--text-level2);
+    text-decoration: none;
+}
+
 
 /* Your medium screen styles here */
 @media (min-width: 768px) {

@@ -5,7 +5,7 @@ getUserRoute.get('/getuser', async (req, res, next)=>{
         // console.log('i called', req.user)
         if(!req.user) return res.status(200).json({auth:flase});
 
-        res.status(200).json({auth:true});
+        res.status(200).json({auth:true,user:req.user});
     } catch (err) {
         res.status(500).json({auth:false});
     }

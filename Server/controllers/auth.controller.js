@@ -9,7 +9,8 @@ const {
 } = require('../libs/services');
 
 const signUp = async (req, res, next) =>{
-    const {email, password, userName, role} = req.body;
+    const {email, password, userName} = req.body;
+    let {role} = req.body;
 
     const user = req.user;
     
@@ -17,8 +18,8 @@ const signUp = async (req, res, next) =>{
         if(user) return res.status(409).json({msg:"User Already Exist!"});
 
         if(!email || !password || !userName) res.status(400).json({msg:"All feild are required"});
-
-        const newUser = await User.create({email,password,userName});
+        if(!role) role = "user";
+        const newUser = await User.create({email,password,userName,role});
 
         switch(role){
             case 'seller':
@@ -32,6 +33,7 @@ const signUp = async (req, res, next) =>{
         }
         res.status(201).json({name:newUser?.userName});
     } catch (err) {
+        console.log(err.message)
         res.status(500).json({err:err.message,at:"Sign up"});
     }
 }

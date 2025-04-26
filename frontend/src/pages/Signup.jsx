@@ -11,7 +11,7 @@ export default function Signup({manage}){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [userName, setUserName] = useState('');
-    const [role, setRole] = useState(null);
+    const [role, setRole] = useState("seller");
 
     const {loading, hookFunctionSignup} = useLoginHook();
     
@@ -47,6 +47,7 @@ export default function Signup({manage}){
             labeltext={"Select one"}
             selectvalue={SELECT_REGISTER_VALUES}
             handlechange={handleSelect}
+            value={role}
         />
         :null}
         
