@@ -1,0 +1,13 @@
+.wrap{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    color: var(--text-level1);
+    margin: 6px 0;
+}
+
+.link a{
+    color: var(--primary);
+    cursor: pointer;
+    text-decoration: none;
+}

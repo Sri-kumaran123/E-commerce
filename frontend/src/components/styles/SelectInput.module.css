@@ -1,0 +1,23 @@
+.inputbox{
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.inputbox label {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.3rem;
+  }
+
+.inputbox select, .inputbox option{
+    height: 1.2rem;
+    border: none;
+    padding: 0.4rem 0;
+    outline: none;
+    font-size: 1rem;
+    background-color: transparent;
+    color: #222;
+}

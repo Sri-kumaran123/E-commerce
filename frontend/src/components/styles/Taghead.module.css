@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-level1);
+}
+
+.leftcontainer{
+    padding: 10px 0;
+    border-bottom: 4px solid var(--primary);
+}
+
+.leftcontainer span {
+    color: var(--primary);
+    font-weight: 700;
+}

@@ -40,3 +40,8 @@ const getAllProductBasedOnSeller = async (req, res, next) =>{
         res.status()
     }
 }
+
+module.exports = {
+    createSeller,
+    getAllProductBasedOnSeller
+}

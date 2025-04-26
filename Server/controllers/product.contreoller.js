@@ -3,12 +3,12 @@ const Seller = require('../models/seller.model');
 
 const createProduct = async (req, res, next) => {
     try {
-        const {productName, desc, imgUrl, quantity} = req.body;
+        const {productName, desc, imgUrl, quantity, category} = req.body;
 
-        if(!productName || !desc || !quantity) return res.status(400).json({msg:"All feilds are required"});
+        if(!productName || !desc || !quantity || !category) return res.status(400).json({msg:"All feilds are required"});
 
         const newProduct = await Product.create({
-            productName, desc, quantity, imgUrl
+            productName, desc, quantity, imgUrl, category
         });
 
         const seller = await Seller.findOne({user:req.user._id});
@@ -98,4 +98,12 @@ const getProduct = async (req, res, next) =>{
     } catch (err) {
         res.status(500).json({err:err.message});
     }
+}
+
+module.exports = {
+    createProduct,
+    deleteProduct,
+    modifyProduct,
+    getAllProduct,
+    getProduct
 }

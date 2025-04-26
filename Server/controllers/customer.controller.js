@@ -40,4 +40,9 @@ const addressCustomer = async (req, res, next) => {
     }
 }
 
+module.exports = {
+    createCustomer,
+    addressCustomer
+}
+
  

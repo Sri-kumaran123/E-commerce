@@ -1,42 +1,73 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.py{
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.px{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.authpage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(238, 242, 242);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.authpage form {
+    background-color: #fff;
+    padding: 3rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
+}
+/* Your medium screen styles here */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .py{
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+    .px{
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    .authpage form {
+        width: 30%;
+    }
+    
+    
+}
+  
+/* Large Devices (Laptops) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+    .py{
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+    .px{
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    .authpage form {
+        width: 20%;
+    }
+    
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+/* Extra Large Devices (Desktops) */
+@media (min-width: 1280px) {
+    .py{
+        padding-left: 7rem;
+        padding-right: 7rem;
+    }
+    .px{
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    .authpage form {
+        width: 20%;
+    }
+    
 }

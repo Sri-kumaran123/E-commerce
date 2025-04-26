@@ -1,6 +1,7 @@
 const Orders = require('../models/orders.model');
 const User = require('../models/user.model');
 const Delivary = require('../models/delivery.model');
+const Customer = require('../models/customer.model');
 
 const createOrder = async (req, res, next) => {
     try {
@@ -76,3 +77,32 @@ const getAllOrder = async (req, res, next) => {
         res.status(500).json({err:"Server side Error", at:"getAll Orders"});
     }
 }
+
+const getHistory = async (req, res, next) => {
+    try {
+        const userId = req.user._id;
+
+        const user = await Customer.findOne({user:userId})
+                    .populate({
+                        path:'history',
+                        populate:{
+                            path:'product',
+                            model:'Product'
+                        }
+                    });
+                    
+        res.status(200).json({ history: user.history });
+
+
+    } catch (err) {
+        res.status(500).json({err:"Server side Error", at:"get History"});
+    }
+}
+
+module.exports = {
+    createOrder,
+    setDelivery,
+    changeOrderStatus,
+    getAllOrder,
+    getHistory
+};

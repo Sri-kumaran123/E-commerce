@@ -1,0 +1,49 @@
+nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+nav > h1 {
+    font-size: 1.8rem;
+    color: var(--primary);
+    padding-bottom: 1rem;
+
+}
+
+
+
+.group, .groups{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:5px;
+    cursor: pointer;
+}
+
+.group{
+    padding: 0 30px;
+}
+
+.icon{
+    color: var(--primary);
+}
+
+.icontext{
+    color: var(--text-menu);
+    text-transform: capitalize;
+}
+
+
+/* Your medium screen styles here */
+@media (min-width: 768px) {
+    nav > h1 {
+        font-size: 2.25rem;
+        padding-bottom: 0; 
+    }
+    nav{
+        flex-direction: row;
+    }
+}
