@@ -41,7 +41,23 @@ const getAllProductBasedOnSeller = async (req, res, next) =>{
     }
 }
 
+const getSellerInfo = async (req, res, next) =>{
+    try {
+        let user = req.user;
+
+        let seller = await Seller.findOne({user:user._id}).populate('user');
+
+        if(!seller) return res.status(404).json({msg:"Seller not found"});
+
+        res.status(200).json({info:seller})
+
+    } catch (err) {
+        res.status(500).json({err:err.message, at:"getSelleinfo", msg:"Server side error"});
+    }
+}
+
 module.exports = {
     createSeller,
-    getAllProductBasedOnSeller
+    getAllProductBasedOnSeller,
+    getSellerInfo
 }

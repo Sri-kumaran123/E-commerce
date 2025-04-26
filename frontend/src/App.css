@@ -23,6 +23,25 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     
 }
+
+.layout{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+}
+.sidebar{
+    width: 20vw;
+    padding-left: 10px;
+    background-color: var(--primary);
+    color: #ffffff;
+    height: 100%;
+}
+
+.main{
+    flex: 1;
+    height: 100%;
+}
 /* Your medium screen styles here */
 @media (min-width: 768px) and (max-width: 1023px) {
     .py{

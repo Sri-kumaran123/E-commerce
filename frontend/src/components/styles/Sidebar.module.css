@@ -1,0 +1,21 @@
+.menu{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    
+}
+
+.menu  a{
+   
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.menu li{
+    padding: 20px 10px;
+    cursor: pointer;
+}
+
+.menu li:hover{
+    background-color: var(--secondary);
+}

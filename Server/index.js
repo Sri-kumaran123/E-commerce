@@ -3,7 +3,11 @@ const dotenv = require('dotenv');
 const cookieParser = require("cookie-parser");
 const CORS = require('cors');
 const {
-    authRoute
+    authRoute,
+    ordersRoute,
+    productRoute,
+    customerRoute,
+    sellerRoute
 } = require('./routes');
 const getUserRoute = require('./libs/checkauthuser.js');
 
@@ -32,6 +36,10 @@ app.use('/v1/check', getUserRoute);
 app.get('/test',(req,res)=>{
     res.json('hi');
 });
+app.use('/order', ordersRoute);
+app.use('/product', productRoute);
+app.use('/customer', customerRoute);
+app.use('/seller', sellerRoute);
 
 
 app.listen(process.env.PORT,()=>{

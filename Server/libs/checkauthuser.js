@@ -4,11 +4,20 @@ getUserRoute.get('/getuser', async (req, res, next)=>{
     try{
         // console.log('i called', req.user)
         if(!req.user) return res.status(200).json({auth:flase});
-
+        
         res.status(200).json({auth:true,user:req.user});
     } catch (err) {
         res.status(500).json({auth:false});
     }
 });
+
+getUserRoute.get('/getusere-info', async (req, res, next) => {
+    try {
+        
+
+    } catch (err) {
+
+    }
+})
 
 module.exports = getUserRoute;

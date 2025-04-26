@@ -40,9 +40,23 @@ const addressCustomer = async (req, res, next) => {
     }
 }
 
+const getCustomer = async (req, res, next) => {
+    try {
+        let {user} = req.user;
+
+        const customer = await Customer.findOne({user:user._id}).populate('user');
+
+        if(!customer)  return res.status(404).json({msg:"Customer detail not found"});
+
+    } catch (err) {
+        res.status(500).json({err:"Server side error", at:"getCustomer", msg:err.message});
+    }
+}
+
 module.exports = {
     createCustomer,
-    addressCustomer
+    addressCustomer,
+    getCustomer
 }
 
  
