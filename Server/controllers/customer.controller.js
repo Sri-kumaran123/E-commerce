@@ -42,21 +42,115 @@ const addressCustomer = async (req, res, next) => {
 
 const getCustomer = async (req, res, next) => {
     try {
-        let {user} = req.user;
+        let user = req.user;
 
         const customer = await Customer.findOne({user:user._id}).populate('user');
 
         if(!customer)  return res.status(404).json({msg:"Customer detail not found"});
+
+        res.status(200).json({info:customer});
+
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({err:"Server side error", at:"getCustomer", msg:err.message});
+    }
+}
+
+const addProductCart = async (req, res, next) =>{
+    try {
+        const proId = req.params.id;
+        let user = req.user;
+
+        console.log(user)
+       
+        const customer = await Customer.findOne({user:user._id});
+
+        if(!customer)  return res.status(404).json({msg:"Customer detail not found"});
+
+        customer.card.push(proId);
+
+        customer.save();
+
+        res.status(200).json({msg:"product added to cart"});
+
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({err:"Server side error", at:"getCustomer", msg:err.message});
+    }
+}
+
+const removeProductFromCart = async (req, res, next) =>{
+    try {
+       
+        let user = req.user;
+        let proId = req.params.id;
+
+        const customer = await Customer.findOne({user:user._id});
+
+        if(!customer)  return res.status(404).json({msg:"Customer detail not found"});
+
+        customer.card.pop(proId);
+
+        customer.save();
+
+        res.status(200).json({msg:"product added to cart"});
+
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({err:"Server side error", at:"getCustomer", msg:err.message});
+    }
+}
+
+const getProductFromCart = async (req, res, next) => {
+    try {
+        
+        let user = req.user;
+
+        const customer = await Customer.findOne({user:user._id}).populate('card')
+
+        if(!customer)  return res.status(404).json({msg:"Customer detail not found"});
+
+        
+
+        res.status(200).json({product:customer.card});
 
     } catch (err) {
         res.status(500).json({err:"Server side error", at:"getCustomer", msg:err.message});
     }
 }
 
+const addPhone = async (req, res, next) => {
+    try {
+        
+        const user = req.user;
+        const { phone } = req.body;
+
+        const customer = await Customer.findOne({ user: user._id });
+
+        if (!customer) {
+            return res.status(400).json({ msg: "Customer details not found" });
+        }
+
+        customer.phone = phone;
+        await customer.save();
+
+        res.status(200).json({ msg: "Phone number updated successfully", customer });
+
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({err:"Server side error", at:"getCustomer", msg:err.message});
+    }
+}
+
+
 module.exports = {
     createCustomer,
     addressCustomer,
-    getCustomer
+    getCustomer,
+    addProductCart,
+    removeProductFromCart,
+    getProductFromCart,
+    addPhone
 }
 
  

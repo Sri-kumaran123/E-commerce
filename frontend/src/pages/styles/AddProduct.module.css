@@ -1,0 +1,32 @@
+.imageUploadContainer {
+    margin-bottom: 20px;
+  }
+  
+  .imageUploadLabel {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .imageUploadInput {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background-color: #f9fafb;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .imageUploadInput:hover {
+    background-color: #f3f4f6;
+  }
+  
+  .imageUploadInput:focus {
+    border-color: #6366f1;
+    background-color: #ffffff;
+  }
+  

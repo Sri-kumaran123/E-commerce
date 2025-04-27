@@ -56,8 +56,28 @@ const getSellerInfo = async (req, res, next) =>{
     }
 }
 
+const addPhone = async (req, res, next) =>{
+    try {
+        console.log('i run')
+        const sellerId = req.params.id;
+        const {phone} = req.body;
+        const seller = await Seller.findById(sellerId);
+        if(!seller) return res.status(400).json({msg:"Seller not found"});
+        seller.phone = phone;
+        console.log('i run')
+        await seller.save();
+        console.log('i run')
+        res.status(200).json({msg:'Phone value updated'});
+
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({err:err.message, at:"getSelleinfo", msg:"Server side error"});
+    }
+}
+
 module.exports = {
     createSeller,
     getAllProductBasedOnSeller,
-    getSellerInfo
+    getSellerInfo,
+    addPhone
 }

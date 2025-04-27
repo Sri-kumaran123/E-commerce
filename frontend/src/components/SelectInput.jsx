@@ -6,6 +6,7 @@ export default function SelectInput({labeltext, selectvalue, handlechange, value
           <select
           value={value}
           onChange={(e)=>{handlechange(e)}}
+          name={labeltext}
           >
             
             {selectvalue.map(x=>{

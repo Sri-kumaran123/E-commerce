@@ -10,6 +10,7 @@ export default function Inputbox({ placeholder, type, icon: Icon, labeltext, han
           placeholder={placeholder}
           type={type}
           onChange={handleChange}
+          name={labeltext}
         />
       </div>
     </div>

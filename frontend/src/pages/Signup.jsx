@@ -11,7 +11,7 @@ export default function Signup({manage}){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [userName, setUserName] = useState('');
-    const [role, setRole] = useState("seller");
+    const [role, setRole] = useState("user");
 
     const {loading, hookFunctionSignup} = useLoginHook();
     

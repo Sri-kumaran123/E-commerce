@@ -6,8 +6,9 @@ const {
     getAllProduct,
     getProduct
 } = require('../controllers/product.contreoller');
+const upload = require('../middlewars/upload');
 
-productRoute.post('/create-product', createProduct);
+productRoute.post('/create-product', upload.single('file'),createProduct);
 
 productRoute.delete('/delete-product/:id', deleteProduct);
 

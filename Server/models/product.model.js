@@ -9,8 +9,9 @@ const productSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    imgUrl:{
-        type:String,
+    img:{
+        type:mongoose.Types.ObjectId,
+        ref:"Image"
     },
     quantity:{
         type:Number,
@@ -19,6 +20,9 @@ const productSchema = mongoose.Schema({
     category:{
         type:String,
         required:true
+    },
+    price:{
+        type:Number
     }
 });
 

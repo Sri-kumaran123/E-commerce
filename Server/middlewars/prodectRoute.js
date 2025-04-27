@@ -19,6 +19,7 @@ const protectRouteMiddleware = async (req, res, next) => {
         }
 
         req.user = user;
+        console.log("middleware",user);
         next(); 
     } catch (err) {
         console.error(err.message);

@@ -1,14 +1,24 @@
 const Product = require('../models/product.model');
 const Seller = require('../models/seller.model');
+const Image = require('../models/image.model');
 
 const createProduct = async (req, res, next) => {
     try {
-        const {productName, desc, imgUrl, quantity, category} = req.body;
+        const {productName, desc, quantity, category,price} = req.body;
+        console.log(req.file,req.body)
+        if(!productName || !desc || !quantity || !category || !price) return res.status(400).json({msg:"All feilds are required"});
 
-        if(!productName || !desc || !quantity || !category) return res.status(400).json({msg:"All feilds are required"});
+        if (!req.file) {
+            return res.status(400).json({ msg: "No file uploaded" });
+        }
+
+        // Save file to database
+        const newFile = await Image.create({
+            path: req.file.path
+        });
 
         const newProduct = await Product.create({
-            productName, desc, quantity, imgUrl, category
+            productName, desc, quantity, img:newFile._id, category,price
         });
 
         const seller = await Seller.findOne({user:req.user._id});
@@ -22,6 +32,7 @@ const createProduct = async (req, res, next) => {
         res.status(201).json({msg:"Product Created", product:newProduct});
 
     } catch (err) {
+        console.log(err.message)
         res.status(500).json({err:err.message});
     }
 }
@@ -46,6 +57,7 @@ const modifyProduct = async (req, res, next) => {
         product: updatedProduct
         }); 
     } catch (err) {
+        console.log(err.message)
         res.status(500).json({err:err.message});
     }
 }

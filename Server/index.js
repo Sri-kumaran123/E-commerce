@@ -11,7 +11,7 @@ const {
 } = require('./routes');
 const getUserRoute = require('./libs/checkauthuser.js');
 
-
+const uncheckRoute = require('./libs/checkauthuser.js');
 // files
 const connectDB = require('./libs/db.js');
 const protectRouteMiddleware = require('./middlewars/prodectRoute.js');
@@ -31,6 +31,7 @@ app.get('/',(req,res)=>{
     res.json('hi');
 })
 app.use('/v1/auth',authRoute);
+app.use('/get', uncheckRoute);
 app.use(protectRouteMiddleware);
 app.use('/v1/check', getUserRoute);
 app.get('/test',(req,res)=>{

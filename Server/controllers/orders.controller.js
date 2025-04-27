@@ -2,29 +2,39 @@ const Orders = require('../models/orders.model');
 const User = require('../models/user.model');
 const Delivary = require('../models/delivery.model');
 const Customer = require('../models/customer.model');
+const Product = require('../models/product.model');
 
 const createOrder = async (req, res, next) => {
     try {
         const user = await User.findById(req.user._id);
+        const customer = await Customer.findOne({ user: user._id });
 
-        const {customer, product} = req.body;
-
-        if(!customer || !product) return res.status(409).json({msg:"Feilds areREquired"});
+        if (!customer) return res.status(409).json({ msg: "Fields are required" });
 
         const newOrder = await Orders.create({
-            customer, product
-        })
+            customer: customer._id,
+            product: customer.card,
+        });
 
-        user.history.push(newOrder._id);
+        for (let i of customer.card) {
+            let product = await Product.findById(i);
+            if (product) {
+                product.quantity = product.quantity - 1;
+                await product.save();
+            }
+        }
 
-        await user.save();
+        customer.history.push(newOrder._id);
+        customer.card = []; // Empty the cart after order placed
+        await customer.save();
 
-        res.status(200).json({msg:"Order Placed Successfull", order:newOrder})
-
+        res.status(200).json({ msg: "Order Placed Successfully", order: newOrder });
     } catch (err) {
-        res.status(500).json({err:err.message});
+        console.log(err.message);
+        res.status(500).json({ err: err.message });
     }
-}
+};
+
 
 const changeOrderStatus = async (req, res, next) => {
     try {
